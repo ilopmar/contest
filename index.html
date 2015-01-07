@@ -516,13 +516,16 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_application_flow">1.1. Application flow</a></li>
 </ul>
 </li>
-<li><a href="#_backend">2. Backend</a>
+<li><a href="#_live_demo">2. Live Demo</a></li>
+<li><a href="#_build_and_installation">3. Build and installation</a></li>
+<li><a href="#_backend">4. Backend</a>
 <ul class="sectlevel2">
-<li><a href="#_spring_boot_application">2.1. Spring Boot Application</a></li>
-<li><a href="#_spring_boot_cli">2.2. Spring Boot CLI</a></li>
+<li><a href="#_spring_boot_application">4.1. Spring Boot Application</a></li>
+<li><a href="#_spring_boot_cli">4.2. Spring Boot CLI</a></li>
 </ul>
 </li>
-<li><a href="#_android_application">3. Android Application</a></li>
+<li><a href="#_android_application">5. Android Application</a></li>
+<li><a href="#_technological_stack">6. Technological stack</a></li>
 </ul>
 </div>
 </div>
@@ -553,6 +556,7 @@ account: <a href="https://github.com/lmivan/contest" target="_blank">https://git
 <div class="content">
 <img src="images//polaromatic-app.jpg" alt="polaromatic app">
 </div>
+<div class="title">Figure 1. Polaromatic with some photos Polaromatized</div>
 </div>
 <div class="sect2">
 <h3 id="_application_flow">1.1. Application flow</h3>
@@ -578,6 +582,7 @@ method you can also customize the text in the Polaroid.</p>
 <div class="content">
 <img src="images//polaromatic-flow.png" alt="polaromatic flow">
 </div>
+<div class="title">Figure 2. Application flow</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -591,7 +596,7 @@ browser using Websockets.</p>
 </li>
 <li>
 <p>A <em>Flickr Interesing</em> photos downloader as been created has a <em>Spring Boot CLI Application</em> to download automatically
-photos every 60 seconds.</p>
+photos every 30 seconds.</p>
 </li>
 <li>
 <p>The other way to publish photos is using the <em>Polaromatic Android Application</em> and share a photo using the application.</p>
@@ -603,10 +608,28 @@ photos every 60 seconds.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_backend">2. Backend</h2>
+<h2 id="_live_demo">2. Live Demo</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_and_installation">3. Build and installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_backend">4. Backend</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_spring_boot_application">2.1. Spring Boot Application</h3>
+<h3 id="_spring_boot_application">4.1. Spring Boot Application</h3>
 <div class="paragraph">
 <p>The central part of the application is the <strong>Polaromatic</strong> App built with <em>Spring Boot</em>. We also use <em>Spring Integration</em>
 to decouple the application from all the unnecessary boilerplate code needed to read files from the file system and to
@@ -658,7 +681,7 @@ in which we define an <em>integration flow</em>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_spring_boot_cli">2.2. Spring Boot CLI</h3>
+<h3 id="_spring_boot_cli">4.2. Spring Boot CLI</h3>
 <div class="paragraph">
 <p>We need to feed the system with nice photos to apply the <em>Polaroid</em> effect to them. We&#8217;ve chosen
 <a href="https://www.flickr.com/explore/interesting/7days" target="_blank">Flickr Interesing page</a> to get the photos.</p>
@@ -676,19 +699,94 @@ and copy them to the <code>work</code> directory to be processed by <strong>Pola
 </div>
 </div>
 <div class="sect1">
-<h2 id="_android_application">3. Android Application</h2>
+<h2 id="_android_application">5. Android Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO</p>
+<p>While I was developing the backend I thought that it would be great to be able to take a photo with the phone an
+<em>Polaromatize it</em>. So I made the changes to the backend to be able to receive a photo and then I create an Android
+application to send the photo.</p>
+</div>
+<div class="paragraph">
+<p>With this application you can take a picture with your phone, add the text you want and then share it with the
+Polaromatic web.</p>
+</div>
+<div class="paragraph">
+<p>This is my first Android application and it has been fun to create it using Groovy.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images//polaromatic-android.jpg" alt="polaromatic android">
+</div>
+<div class="title">Figure 3. Sharing a photo from the Polaromatic Android app with the web</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Please be sure to configure in the <em>Settings</em> option the url in which you have deployed your Polaromatic server or
+use the default demo environment.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The application is only a <em>share-app</em> so it is not shown in the applications list after you install it.
+</td>
+</tr>
+</table>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_technological_stack">6. Technological stack</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The technological stack of the <strong>Polaromatic</strong> applications has one thing in common: <a href="http://groovy-lang.org/" target="_blank">Groovy</a>.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="http://groovy-lang.org/"><img src="images//groovy-logo.png" alt="groovy logo" width="250"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>I&#8217;m a very big fun of Groovy so I used it for the whole stack :-)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Polamoratic</strong>: All the Spring Boot code is Groovy.</p>
+</li>
+<li>
+<p><strong>FlickrDownloader:</strong> A Spring Boot CLI Application can only be written with Groovy.</p>
+</li>
+<li>
+<p><strong>Android app</strong>: My first Android app, so the best way to built it is to use Groovy.</p>
+</li>
+<li>
+<p><strong>Tests</strong>: I use <a href="http://www.spockframework.org" target="_blank">Spock</a> for the Polaromatic tests.</p>
+</li>
+<li>
+<p><strong>HTML</strong>: The html of Polaromatic web is built with the new MarkupTemplateEngine introduced in Groovy 2.3.</p>
+</li>
+</ul>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-01-07 15:07:43 CET
+Last updated 2015-01-08 00:30:56 CET
 </div>
 </div>
 </body>
