@@ -517,14 +517,23 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </li>
 <li><a href="#_live_demo">2. Live Demo</a></li>
-<li><a href="#_build_and_installation">3. Build and installation</a></li>
-<li><a href="#_backend">4. Backend</a>
+<li><a href="#_backend">3. Backend</a>
 <ul class="sectlevel2">
-<li><a href="#_spring_boot_application">4.1. Spring Boot Application</a></li>
-<li><a href="#_spring_boot_cli">4.2. Spring Boot CLI</a></li>
+<li><a href="#_spring_boot_application">3.1. Spring Boot Application</a></li>
+<li><a href="#_spring_boot_cli">3.2. Spring Boot CLI</a></li>
 </ul>
 </li>
-<li><a href="#_android_application">5. Android Application</a></li>
+<li><a href="#_android_application">4. Android Application</a></li>
+<li><a href="#_build_and_installation">5. Build and installation</a>
+<ul class="sectlevel2">
+<li><a href="#_polaromatic">5.1. Polaromatic</a></li>
+<li><a href="#_flickdownloader">5.2. FlickDownloader</a></li>
+<li><a href="#_android">5.3. Android</a></li>
+<li><a href="#_documentation">5.4. Documentation</a></li>
+<li><a href="#_dependencies">5.5. Dependencies</a></li>
+<li><a href="#_tips_tricks">5.6. Tips &amp; Tricks</a></li>
+</ul>
+</li>
 <li><a href="#_technological_stack">6. Technological stack</a></li>
 </ul>
 </div>
@@ -551,6 +560,18 @@ applying a cool <em>Polaroid</em> effect.</p>
 <a href="http://blog.greglturnquist.com/2014/12/announcing-learningspringboot-contest-cc-packtpub-springcentral.html" target="_blank">#LearningSpringBoot</a>
 contest by <a href="https://twitter.com/gregturn" target="_blank">Greg Turnquist</a> and <strong>Polaromatic</strong> source code is available at my Github
 account: <a href="https://github.com/lmivan/contest" target="_blank">https://github.com/lmivan/contest</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you like the application please star-it on Github :-)
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -595,7 +616,7 @@ inside the <em>Polaromatic</em> application, converted to a cool Polaroid photo 
 browser using Websockets.</p>
 </li>
 <li>
-<p>A <em>Flickr Interesing</em> photos downloader as been created has a <em>Spring Boot CLI Application</em> to download automatically
+<p>A <em>Flickr Interesing</em> photos downloader as been created as a <em>Spring Boot CLI Application</em> to download automatically
 photos every 30 seconds.</p>
 </li>
 <li>
@@ -611,30 +632,26 @@ photos every 30 seconds.</p>
 <h2 id="_live_demo">2. Live Demo</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO</p>
+<p>The application is deployed at <a href="http://polaromatic.noip.me/" target="_blank">http://polaromatic.noip.me/</a> and every 30 seconds
+new Flickr photos will appear automatically, so you only have to wait and enjoy :-)</p>
 </div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_build_and_installation">3. Build and installation</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>TODO</p>
+<p>You can also download the Android application and publish some photos from your mobile phone:
+<a href="https://www.dropbox.com/s/xholnkj5oz5tgx8/polaromatic-grooid.apk?dl=1" class="bare">https://www.dropbox.com/s/xholnkj5oz5tgx8/polaromatic-grooid.apk?dl=1</a></p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_backend">4. Backend</h2>
+<h2 id="_backend">3. Backend</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_spring_boot_application">4.1. Spring Boot Application</h3>
+<h3 id="_spring_boot_application">3.1. Spring Boot Application</h3>
 <div class="paragraph">
 <p>The central part of the application is the <strong>Polaromatic</strong> App built with <em>Spring Boot</em>. We also use <em>Spring Integration</em>
 to decouple the application from all the unnecessary boilerplate code needed to read files from the file system and to
 define the flow of the information in the system.
-From our application point of view we define a POGO that is going to be called by the <em>infrastructure</em>
+From our application&#8217;s point of view we define a POGO that is going to be called by the <em>infrastructure</em>
 (Spring Integration) and we are just going to receive a <code>File</code>.</p>
 </div>
 <div class="paragraph">
@@ -651,7 +668,8 @@ in which we define an <em>integration flow</em>.</p>
     <span class="tag">&lt;service-activator</span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fileService</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">preprocessFile</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="tag">&lt;service-activator</span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">imageConverterService</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">applyEffect</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
     <span class="tag">&lt;service-activator</span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">browserPushService</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pushToBrowser</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <i class="conum" data-value="4"></i><b>(4)</b>
-    <span class="tag">&lt;service-activator</span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fileService</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">deleteTempFiles</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="tag">&lt;service-activator</span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">metricsService</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">updateMetrics</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="tag">&lt;service-activator</span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fileService</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">deleteTempFiles</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <i class="conum" data-value="6"></i><b>(6)</b>
 <span class="tag">&lt;/chain&gt;</span></code></pre>
 </div>
 </div>
@@ -675,13 +693,35 @@ in which we define an <em>integration flow</em>.</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Update the metrics</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>Delete all temporary files</td>
 </tr>
 </table>
 </div>
+<div class="sect3">
+<h4 id="_custom_metrics">3.1.1. Custom metrics</h4>
+<div class="paragraph">
+<p>Another cool thing about Spring Boot is that you can define you own custom metrics inside your application. As you can
+see in the previous application flow, the step 5 is to update the metrics. We count the number of photos processed from
+Flickr and from the Android application and expose this numbers in the <code>/metrics</code> endpoint.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+    <span class="error">.</span><span class="error">.</span><span class="error">.</span>
+    <span class="error">c</span><span class="error">o</span><span class="error">u</span><span class="error">n</span><span class="error">t</span><span class="error">e</span><span class="error">r</span><span class="error">.</span><span class="error">p</span><span class="error">o</span><span class="error">l</span><span class="error">a</span><span class="error">r</span><span class="error">o</span><span class="error">m</span><span class="error">a</span><span class="error">t</span><span class="error">i</span><span class="error">z</span><span class="error">e</span><span class="error">d</span><span class="error">.</span><span class="error">p</span><span class="error">h</span><span class="error">o</span><span class="error">t</span><span class="error">o</span><span class="error">s</span><span class="error">.</span><span class="error">f</span><span class="error">l</span><span class="error">i</span><span class="error">c</span><span class="error">k</span><span class="error">r</span>: <span class="integer">152</span>,
+    <span class="error">c</span><span class="error">o</span><span class="error">u</span><span class="error">n</span><span class="error">t</span><span class="error">e</span><span class="error">r</span><span class="error">.</span><span class="error">p</span><span class="error">o</span><span class="error">l</span><span class="error">a</span><span class="error">r</span><span class="error">o</span><span class="error">m</span><span class="error">a</span><span class="error">t</span><span class="error">i</span><span class="error">z</span><span class="error">e</span><span class="error">d</span><span class="error">.</span><span class="error">p</span><span class="error">h</span><span class="error">o</span><span class="error">t</span><span class="error">o</span><span class="error">s</span><span class="error">.</span><span class="error">a</span><span class="error">n</span><span class="error">d</span><span class="error">r</span><span class="error">o</span><span class="error">i</span><span class="error">d</span>: <span class="integer">42</span>,
+    <span class="error">.</span><span class="error">.</span><span class="error">.</span>
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_spring_boot_cli">4.2. Spring Boot CLI</h3>
+<h3 id="_spring_boot_cli">3.2. Spring Boot CLI</h3>
 <div class="paragraph">
 <p>We need to feed the system with nice photos to apply the <em>Polaroid</em> effect to them. We&#8217;ve chosen
 <a href="https://www.flickr.com/explore/interesting/7days" target="_blank">Flickr Interesing page</a> to get the photos.</p>
@@ -699,7 +739,7 @@ and copy them to the <code>work</code> directory to be processed by <strong>Pola
 </div>
 </div>
 <div class="sect1">
-<h2 id="_android_application">5. Android Application</h2>
+<h2 id="_android_application">4. Android Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>While I was developing the backend I thought that it would be great to be able to take a photo with the phone an
@@ -748,6 +788,133 @@ The application is only a <em>share-app</em> so it is not shown in the applicati
 </div>
 </div>
 <div class="sect1">
+<h2 id="_build_and_installation">5. Build and installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you want to install Polaromatic in your own server, make some changes to the code, test some new things,&#8230;&#8203; you need
+to build it.</p>
+</div>
+<div class="paragraph">
+<p>First please clone the repository (and if you like the project please star-it on Github):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">git clone https://github.com/lmivan/contest.git
+cd contest</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_polaromatic">5.1. Polaromatic</h3>
+<div class="paragraph">
+<p>Polaromatic back is a standard Spring Boot application so the only thing you need to do is execute it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">./gradlew polaromatic-back:bootRun</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or if your prefer you can build it and create an executable jar file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">./gradlew polaromatic-back:build</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+You need to have <em>ImageMagick</em> installed in your system to pass the tests and to apply the Polaroid effect
+(see below).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Or just build the jar file without execute the tests:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">./gradlew polaromatic-back:build -x test</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flickdownloader">5.2. FlickDownloader</h3>
+<div class="paragraph">
+<p>You need to install Spring Boot CLI. The easy way to do this is with <a href="http://gvmtool.net/" target="_blank">GVM</a>. Once you have it
+installed you can just run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">cd polaromatic-back
+spring run FlickrDownloader.groovy</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_android">5.3. Android</h3>
+<div class="paragraph">
+<p>If this is the first time you develop for Android or if you haven&#8217;t installed the Android SDK, the easy way to setup
+everything is using <a href="http://developer.android.com/sdk/index.html" target="_blank">Android Studio</a>. Download, install it and then import
+the <code>polaromatic-grooid/build.gradle</code> file as a <em>Non-Android Studio project</em>. This will download the necessary Sdk
+files and Android build tools.</p>
+</div>
+<div class="paragraph">
+<p>Once you have everything installed you can just set your android home and then build the .apk file (or just install it
+in your phone directly using Android Studio).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash"># Set your own path
+export ANDROID_HOME=/home/ivan/Android/Sdk/
+
+./gradlew polaromatic-grooid:build</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_documentation">5.4. Documentation</h3>
+<div class="paragraph">
+<p>This documentation is created using <a href="http://asciidoctor.org/" target="_blank">AsciiDoctor</a>. To build the documentation just execute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">./gradlew polaromatic-docs:asciidoctor</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The documentation is available in <code>polaromatic-docs/build/docs/html5/index.html</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dependencies">5.5. Dependencies</h3>
+<div class="paragraph">
+<p>For the image conversion you need to have <em>ImageMagick</em> installed in your system. If you use Linux Mint/Debian/Ubuntu
+you only need to execute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">sudo apt-get install imagemagick</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tips_tricks">5.6. Tips &amp; Tricks</h3>
+<div class="paragraph">
+<p>If you are not interested in developing the Android application and do not want to download and configure Android SDK
+you can exclude the project from the Gradle build.
+Edit <code>setting.gradle</code> and remove (or comment) the project <code>polaromatic-grooid</code>.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_technological_stack">6. Technological stack</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -755,28 +922,33 @@ The application is only a <em>share-app</em> so it is not shown in the applicati
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<a class="image" href="http://groovy-lang.org/"><img src="images//groovy-logo.png" alt="groovy logo" width="250"></a>
+<a class="image" href="http://groovy-lang.org/"><img src="images//groovy-logo.png" alt="groovy logo" width="300"></a>
 </div>
 </div>
 <div class="paragraph">
-<p>I&#8217;m a very big fun of Groovy so I used it for the whole stack :-)</p>
+<p>I&#8217;m a very big fan of Groovy so I used it for the whole stack :-)</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Polamoratic</strong>: All the Spring Boot code is Groovy.</p>
+<p><strong>Polaromatic</strong>: All the Spring Boot code is Groovy.</p>
 </li>
 <li>
 <p><strong>FlickrDownloader:</strong> A Spring Boot CLI Application can only be written with Groovy.</p>
 </li>
 <li>
-<p><strong>Android app</strong>: My first Android app, so the best way to built it is to use Groovy.</p>
+<p><strong>Android app</strong>: My first Android app, so the best way to built it is to use Groovy now that it&#8217;s finally possible.</p>
 </li>
 <li>
 <p><strong>Tests</strong>: I use <a href="http://www.spockframework.org" target="_blank">Spock</a> for the Polaromatic tests.</p>
 </li>
 <li>
-<p><strong>HTML</strong>: The html of Polaromatic web is built with the new MarkupTemplateEngine introduced in Groovy 2.3.</p>
+<p><strong>HTML</strong>: The html of Polaromatic web is built with the new
+<a href="http://beta.groovy-lang.org/docs/latest/html/documentation/markup-template-engine.html" target="_blank">MarkupTemplateEngine</a>
+introduced in Groovy 2.3.</p>
+</li>
+<li>
+<p><strong>Build Tool</strong>: I&#8217;ve created a <a href="http://www.gradle.org/" target="_blank">Gradle</a> multi-project to build the different projects: back, grooid and documentation.</p>
 </li>
 </ul>
 </div>
@@ -786,7 +958,7 @@ The application is only a <em>share-app</em> so it is not shown in the applicati
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-01-08 00:30:56 CET
+Last updated 2015-01-10 00:32:07 CET
 </div>
 </div>
 </body>
